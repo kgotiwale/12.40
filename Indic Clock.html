@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Indic Clock</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div class="row">
+	<div id="MumbnaiClock">
+
+		<h1>Mumbai, India</h1>
+    	<img id="hour1" src="Devanagiri/0.png" width="180" height="180" />
+    	<img id="hour2" src="Devanagiri/0.png" width="180" height="180" />
+    	<img src="Devanagiri/dots.png" width="150" height="150" />
+    	<img id="minute1" src="Devanagiri/0.png" width="180" height="180" />
+    	<img id="minute2" src="Devanagiri/0.png" width="180" height="180" />
+    	<img src="Devanagiri/dots.png" width="150" height="150" />
+    	<img id="second1" src="Devanagiri/0.png" width="180" height="180" />
+    	<img id="second2" src="Devanagiri/0.png" width="180" height="180" />
+    	<img id='antemeridiem' src ='Devanagiri/am.png' width="151.6" height="200" />
+	</div>
+
+
+<br>
+
+	<div id="DubaiClock">
+		<br>
+		<h1> Dubai, United Arab Emirates </h1>
+		<img id="hour1_1" src="Arabic/0.png" width="180" height="180" />
+		<img id="hour2_1" src="Arabic/0.png" width="180" height="180" />
+		<img src="Arabic/dots.png" width="150" height="150" />
+		<img id="minute1_1" src="Arabic/0.png" width="180" height="180" />
+		<img id="minute2_1" src="Arabic/0.png" width="180" height="180" />
+		<img src="Arabic/dots.png" width="150" height="150" />
+		<img id="second1_1" src="Arabic/0.png" width="180" height="180" />
+		<img id="second2_1" src="Arabic/0.png" width="180" height="180" />
+		<img id='antemeridiem_1' src ='Arabic/am.png' width="151.6" height="200" />
+
+
+	</div>
+
+<br>
+
+	<div id="LondonClock">
+		<br>
+		<h1>London, United Kingdom</h1>
+		<img id="hour1_2" src="Latin/0.png" width="180" height="180" />
+		<img id="hour2_2" src="Latin/0.png" width="180" height="180" />
+		<img src="Latin/dots.png" width="150" height="150" />
+		<img id="minute1_2" src="Latin/0.png" width="180" height="180" />
+		<img id="minute2_2" src="Latin/0.png" width="180" height="180" />
+		<img src="Latin/dots.png" width="150" height="150" />
+		<img id="second1_2" src="Latin/0.png" width="180" height="180" />
+		<img id="second2_2" src="Latin/0.png" width="180" height="180" />
+		<img id='antemeridiem_2' src ='Latin/am.png' width="151.6" height="200" />
+
+	</div>
+
+<br>
+
+	<div id="DhakaClock">
+		<br>
+		<h1>Dhaka, Bangladesh</h1>
+		<img id="hour1_3" src="Bangla/0.png" width="180" height="180" />
+		<img id="hour2_3" src="Bangla/0.png" width="180" height="180" />
+		<img src="Bangla/dots.png" width="150" height="150" />
+		<img id="minute1_3" src="Bangla/0.png" width="180" height="180" />
+		<img id="minute2_3" src="Bangla/0.png" width="180" height="180" />
+		<img src="Bangla/dots.png" width="150" height="150" />
+		<img id="second1_3" src="Bangla/0.png" width="180" height="180" />
+		<img id="second2_3" src="Bangla/0.png" width="180" height="180" />
+		<img id='antemeridiem_3' src ='Bangla/am.png' width="151.6" height="200" />
+
+
+
+	</div>
+
+
+</div>
+
+<script id="Mumabi" type="text/javascript">
+    var images = new Array('Devanagiri/0.png', 'Devanagiri/1.png', 'Devanagiri/2.png', 'Devanagiri/3.png', 'Devanagiri/4.png', 'Devanagiri/5.png', 'Devanagiri/6.png', 'Devanagiri/7.png', 'Devanagiri/8.png', 'Devanagiri/9.png');
+    var amPmImages = new Array('am.png', 'pm.png'); 
+
+    // Add AM and PM images
+
+    var interval = setInterval(function () {
+        var date = new Date();
+        var hour = date.getUTCHours() + 5; //UTC offset for Mumbai (5 hours and 30 minutes ahead of UTC)
+        var minutes = String(date.getUTCMinutes());
+        var seconds = String(date.getUTCSeconds());
+
+        // Convert 24-hour time to 12-hour time
+        var amPm = 'AM';
+        if (hour >= 12) {
+            amPm = 'PM';
+            if (hour > 12) {
+                hour -= 12;
+            }
+        }
+
+        // Update AM/PM image
+        $('#antemeridiem').attr('src', amPmImages[amPm == 'AM' ? 0 : 1]);        
+
+        // Convert hour to string
+        hour = String(hour);
+
+        if (hour < 10) {
+            $('#hour1').attr('src', images[0]);
+            $('#hour2').attr('src', images[hour.charAt(0)]);
+        } else {
+        	$('#hour1').attr('src', images[hour.charAt(0)]);
+            $('#hour2').attr('src', images[hour.charAt(1)]);
+        }
+
+        if (minutes < 10) {
+            $('#minute1').attr('src', images[0]);
+            $('#minute2').attr('src', images[minutes.charAt(0)]);
+        } else {
+            $('#minute1').attr('src', images[minutes.charAt(0)]);
+            $('#minute2').attr('src', images[minutes.charAt(1)]);
+        }
+
+        if (seconds < 10) {
+            $('#second1').attr('src', images[0]);
+            $('#second2').attr('src', images[seconds.charAt(0)]);
+        } else {
+            $('#second1').attr('src', images[seconds.charAt(0)]);
+            $('#second2').attr('src', images[seconds.charAt(1)]);
+        }
+    }, 1000);
+</script>
+
+
+<script id="Dubai" type="text/javascript">
+    var imagesDubai = new Array('Arabic/0.png', 'Arabic/1.png', 'Arabic/2.png', 'Arabic/3.png', 'Arabic/4.png', 'Arabic/5.png', 'Arabic/6.png', 'Arabic/7.png', 'Arabic/8.png', 'Arabic/9.png');
+    var amPmImages = new Array('Arabic/am.png', 'Arabic/pm.png'); 
+
+    // Add AM and PM images
+
+    var intervalDubai = setInterval(function () {
+        var dateDubai = new Date();
+        var hourDubai = dateDubai.getUTCHours() + 3;
+        var minutesDubai = String(dateDubai.getUTCMinutes());
+        var secondsDubai = String(dateDubai.getUTCSeconds());
+
+        // Convert 24-hour time to 12-hour time
+        var amPmDubai = 'AM';
+        if (hourDubai >= 12) {
+            amPmDuabi = 'PM';
+            if (hourDubai > 12) {
+                hourDubai -= 12;
+            }
+        }
+
+        // Update AM/PM image
+        $('#antemeridiem_2').attr('src', amPmImages[amPmDubai == 'AM' ? 0 : 1]);        
+
+        // Convert hour to string
+        hourDubai = String(hourDubai);
+
+        if (hourDubai < 10) {
+            $('#hour1_1').attr('src', imagesDubai[0]);
+            $('#hour2_1').attr('src', imagesDubai[hourDubai.charAt(0)]);
+        } else {
+        	$('#hour1_1').attr('src', imagesDubai[hourDubai.charAt(0)]);
+            $('#hour2_1').attr('src', imagesDubai[hourDubai.charAt(1)]);
+        }
+
+        if (minutesDubai < 10) {
+            $('#minute1_1').attr('src', imagesDubai[0]);
+            $('#minute2_1').attr('src', imagesDubai[minutesDubai.charAt(0)]);
+        } else {
+            $('#minute1_1').attr('src', imagesDubai[minutesDubai.charAt(0)]);
+            $('#minute2_1').attr('src', imagesDubai[minutesDubai.charAt(1)]);
+        }
+
+        if (secondsDubai < 10) {
+            $('#second1_1').attr('src', imagesDubai[0]);
+            $('#second2_1').attr('src', imagesDubai[secondsDubai.charAt(0)]);
+        } else {
+            $('#second1_1').attr('src', imagesDubai[secondsDubai.charAt(0)]);
+            $('#second2_1').attr('src', imagesDubai[secondsDubai.charAt(1)]);
+        }
+    }, 1000);
+</script>
+
+
+<script id="London" type="text/javascript">
+    var imagesLondon = new Array('Latin/0.png', 'Latin/1.png', 'Latin/2.png', 'Latin/3.png', 'Latin/4.png', 'Latin/5.png', 'Latin/6.png', 'Latin/7.png', 'Latin/8.png', 'Latin/9.png');
+    var amPmImages = new Array('Latin/am.png', 'Latin/pm.png'); 
+
+    // Add AM and PM images
+
+    var intervalLondon = setInterval(function () {
+        var dateLondon = new Date();
+        var hourLondon = dateLondon.getHours();
+        var minutesLondon = String(dateLondon.getMinutes());
+        var secondsLondon = String(dateLondon.getSeconds());
+
+        // Convert 24-hour time to 12-hour time
+        var amPmLondon = 'AM';
+        if (hourLondon >= 12) {
+            amPmLondon = 'PM';
+            if (hourLondon > 12) {
+                hourLondon -= 12;
+            }
+        }
+
+        // Update AM/PM image
+        $('#antemeridiem_2').attr('src', amPmImages[amPmLondon == 'AM' ? 0 : 1]);        
+
+        // Convert hour to string
+        hourLondon = String(hourLondon);
+
+        if (hourLondon < 10) {
+            $('#hour1_2').attr('src', imagesLondon[0]);
+            $('#hour2_2').attr('src', imagesLondon[hourLondon.charAt(0)]);
+        } else {
+        	$('#hour1_2').attr('src', imagesLondon[hourLondon.charAt(0)]);
+            $('#hour2_2').attr('src', imagesLondon[hourLondon.charAt(1)]);
+        }
+
+        if (minutesLondon < 10) {
+            $('#minute1_2').attr('src', imagesLondon[0]);
+            $('#minute2_2').attr('src', imagesLondon[minutesLondon.charAt(0)]);
+        } else {
+            $('#minute1_2').attr('src', imagesLondon[minutesLondon.charAt(0)]);
+            $('#minute2_2').attr('src', imagesLondon[minutesLondon.charAt(1)]);
+        }
+
+        if (secondsLondon < 10) {
+            $('#second1_2').attr('src', imagesLondon[0]);
+            $('#second2_2').attr('src', imagesLondon[secondsLondon.charAt(0)]);
+        } else {
+            $('#second1_2').attr('src', imagesLondon[secondsLondon.charAt(0)]);
+            $('#second2_2').attr('src', imagesLondon[secondsLondon.charAt(1)]);
+        }
+    }, 1000);
+</script>
+
+
+</body>
+</html>
