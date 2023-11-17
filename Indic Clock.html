@@ -251,8 +251,8 @@
     var intervalDhaka = setInterval(function () {
         var dateDhaka = new Date();
         var hourDhaka = dateDhaka.getUTCHours() +6;
-        var minutesDhaka = String(dateDhaka.getMinutes());
-        var secondsDhaka = String(dateDhaka.getSeconds());
+        var minutesDhaka = String(dateDhaka.getUTCMinutes());
+        var secondsDhaka = String(dateDhaka.getUTCSeconds());
 
         // Convert 24-hour time to 12-hour time
         var amPmDhaka = 'AM';
