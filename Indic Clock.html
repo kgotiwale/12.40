@@ -242,6 +242,59 @@
     }, 1000);
 </script>
 
+<script id="Dhaka" type="text/javascript">
+    var imagesDhaka = new Array('Bangla/0.png', 'Bangla/1.png', 'Bangla/2.png', 'Bangla/3.png', 'Bangla/4.png', 'Bangla/5.png', 'Bangla/6.png', 'Bangla/7.png', 'Bangla/8.png', 'Bangla/9.png');
+    var amPmImages = new Array('Bangla/am.png', 'Bangla/pm.png'); 
+
+    // Add AM and PM images
+
+    var intervalDhaka = setInterval(function () {
+        var dateDhaka = new Date();
+        var hourDhaka = dateDhaka.getUTCHours() +6;
+        var minutesDhaka = String(dateDhaka.getMinutes());
+        var secondsDhaka = String(dateDhaka.getSeconds());
+
+        // Convert 24-hour time to 12-hour time
+        var amPmDhaka = 'AM';
+        if (hourDhaka >= 12) {
+            amPmDhaka = 'PM';
+            if (hourDhaka > 12) {
+                hourDhaka -= 12;
+            }
+        }
+
+        // Update AM/PM image
+        $('#antemeridiem_2').attr('src', amPmImages[amPmDhaka == 'AM' ? 0 : 1]);        
+
+        // Convert hour to string
+        hourDhaka = String(hourDhaka);
+
+        if (hourDhaka < 10) {
+            $('#hour1_3').attr('src', imagesDhaka[0]);
+            $('#hour2_3').attr('src', imagesDhaka[hourDhaka.charAt(0)]);
+        } else {
+        	$('#hour1_3').attr('src', imagesDhaka[hourDhaka.charAt(0)]);
+            $('#hour2_3').attr('src', imagesDhaka[hourDhaka.charAt(1)]);
+        }
+
+        if (minutesDhaka < 10) {
+            $('#minute1_3').attr('src', imagesDhaka[0]);
+            $('#minute2_3').attr('src', imagesDhaka[minutesDhaka.charAt(0)]);
+        } else {
+            $('#minute1_3').attr('src', imagesDhaka[minutesDhaka.charAt(0)]);
+            $('#minute2_3').attr('src', imagesDhaka[minutesDhaka.charAt(1)]);
+        }
+
+        if (secondsDhaka < 10) {
+            $('#second1_3').attr('src', imagesDhaka[0]);
+            $('#second2_3').attr('src', imagesDhaka[secondsDhaka.charAt(0)]);
+        } else {
+            $('#second1_3').attr('src', imagesDhaka[secondsDhaka.charAt(0)]);
+            $('#second2_3').attr('src', imagesDhaka[secondsDhaka.charAt(1)]);
+        }
+    }, 1000);
+</script>
+
 
 </body>
 </html>
